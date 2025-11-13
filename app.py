@@ -2,6 +2,7 @@ import streamlit as st
 import cv2
 import torch
 from PIL import Image
+from ultralytics import YOLO
 
 # Load YOLOv5 model
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')  # Update path to your model
@@ -38,5 +39,6 @@ if uploaded_file is not None:
             # Perform detection on each frame
             results = model(frame)  # Inference
             st.image(results.render()[0], caption="Detected Frame", use_column_width=True)
+
 
         cap.release()
